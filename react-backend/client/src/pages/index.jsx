@@ -9,6 +9,7 @@ class MainPage extends React.Component {
     this.state = {
       listings: [
         {
+          id: 1,
           title: "New Listing",
           address: "39 Wyckoff Street",
           price: 6050,
@@ -19,6 +20,7 @@ class MainPage extends React.Component {
             "https://d3mqmy22owj503.cloudfront.net/10/500010/images/poi/sample-house-2/10-logo.jpg"
         },
         {
+          id: 2,
           title: "New Listing 2",
           address: "39 Wyckoff Street",
           price: 6050,
@@ -28,6 +30,7 @@ class MainPage extends React.Component {
           imageSrc: "https://i.ytimg.com/vi/Zw_bIr5W0-4/maxresdefault.jpg"
         },
         {
+          id: 3,
           title: "New Listing",
           address: "39 Wyckoff Street",
           price: 6050,
@@ -38,6 +41,7 @@ class MainPage extends React.Component {
             "https://d3mqmy22owj503.cloudfront.net/10/500010/images/poi/sample-house-2/10-logo.jpg"
         },
         {
+          id: 4,
           title: "New Listing 2",
           address: "39 Wyckoff Street",
           price: 6050,

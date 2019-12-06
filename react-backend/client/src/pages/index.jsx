@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import ListingCard from "../components/ListingCard";
+import ListingSearch from '../components/ListingSearch'
 import { CardColumns, Row, Col } from "react-bootstrap";
 import logo from '../web-photos/ru-stadium-text.png';
 class MainPage extends React.Component {
@@ -60,6 +61,7 @@ class MainPage extends React.Component {
         <img src={logo} class="img-rounded" width="1110" height="420"></img>
         <br></br>
         <br></br>
+        <ListingSearch/>
         <Row>
           {this.state.listings.map((item, key) => (
             <Col>

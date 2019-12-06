@@ -12,9 +12,6 @@ router.get("/", function(req, res, next) {
   res.render("index", { title: "Express" });
 });
 
-const MongoClient = require("mongodb").MongoClient;
-let db;
-
 /* POST register */
 router.post("/register", (req, res) => {
   console.log("Received post request", req.body);

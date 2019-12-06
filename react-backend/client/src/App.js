@@ -9,7 +9,7 @@ import {
   Link,
   Redirect
 } from "react-router-dom";
-import Container from "react-bootstrap/Container";
+import { Container } from "react-bootstrap";
 
 // Pages
 import MainPage from "./pages/index";
@@ -18,16 +18,21 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import NotFoundPage from "./pages/404";
 
-class App extends Component { 
+// Components
+import Navigation from "./components/Navigation";
+import Dashboard from "./pages/dashboard";
 
+class App extends Component {
   render() {
     return (
       <Container>
-        <Router> 
+        <Router>
+          <Navigation />
           <Switch>
             <Route exact path="/" component={MainPage} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
+            <Route path="/dashboard" component={Dashboard} />
             <Route path="/listing/:id" children={<Listing />} />
             <Route exact path="/404" component={NotFoundPage} />
             <Redirect to="/404" />

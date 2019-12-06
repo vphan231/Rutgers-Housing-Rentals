@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 import {
   BrowserRouter as Router,
@@ -18,8 +18,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import NotFoundPage from "./pages/404";
 
-class App extends Component {
-   
+class App extends Component { 
 
   render() {
     return (

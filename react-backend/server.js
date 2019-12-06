@@ -4,8 +4,16 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
-var router = require("./routes/routes");
 var mongoose = require("mongoose");
+var autoIncrement = require("mongoose-auto-increment");
+
+mongoose.connect(
+  "mongodb+srv://roundabout:password!@roundabout-qktc6.mongodb.net/test?retryWrites=true&w=majority"
+);
+
+autoIncrement.initialize(mongoose.connection);
+
+var router = require("./routes/routes");
 
 var app = express();
 
@@ -19,9 +27,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-mongoose.connect(
-  "mongodb+srv://roundabout:password!@roundabout-qktc6.mongodb.net/test?retryWrites=true&w=majority"
-);
 app.use("/", router);
 
 // catch 404 and forward to error handler

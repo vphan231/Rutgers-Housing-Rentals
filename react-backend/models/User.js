@@ -1,16 +1,12 @@
-var mongoose = require("mongoose");
+var mongoose = require("mongoose"),
+  autoIncrement = require("mongoose-auto-increment");
 var userSchema = new mongoose.Schema({
   name: String,
   email: String,
   phone: Number,
-  password: String
+  password: String,
+  listings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Listing" }]
 });
+userSchema.plugin(autoIncrement.plugin, "User");
 
-//var Landlord = mongoose.model('Landlord', userSchema);
-// var Colin = new Landlord({ name: 'Colin', email:'email@gmail.com',phone: '6094201234',password:'password' });
-// console.log(Colin.name);
-// Colin.save(function (err, Colin) {
-//   if (err) return console.error(err);
-// });
-
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.connection.model("User", userSchema);

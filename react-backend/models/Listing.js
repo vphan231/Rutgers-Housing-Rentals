@@ -1,4 +1,5 @@
-var mongoose = require("mongoose");
+var mongoose = require("mongoose"),
+  autoIncrement = require("mongoose-auto-increment");
 var listingSchema = new mongoose.Schema({
   title: String,
   description: String,
@@ -6,15 +7,11 @@ var listingSchema = new mongoose.Schema({
   price: Number,
   Max_Occupancy: String,
   Has_Driveway: Boolean,
-  Is_Available: Boolean
+  Is_Available: Boolean,
+  imgSrc: String,
+  listedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 });
 
-module.exports = mongoose.model("Listing", listingSchema);
+listingSchema.plugin(autoIncrement.plugin, "Listing");
 
-//var Listing = mongoose.model('Listing', listingSchema);
-// var Wyckoff = new Listing({ title: 'New Listing', Description: 'House',address: '39 Wyckoff Street',price: '6050',
-//                           Max_Occupancy:'9',Has_Driveway: 'false',Is_Available: "false" });
-// console.log(Wyckoff.name);
-// Wyckoff.save(function (err, Wyckoff) {
-//   if (err) return console.error(err);
-// });
+module.exports = mongoose.connection.model("Listing", listingSchema);

@@ -7,16 +7,17 @@ import {
   Link,
   useParams
 } from "react-router-dom";
+import { Form, Button } from "react-bootstrap";
 
 class Register extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: "", password: "" };
+    this.state = { name: "", phone: "", email: "", password: "" };
   }
   handleSubmit = e => {
     e.preventDefault();
-    const { email, password } = this.state;
-    axios.post("/register", { email, password }).then(res => {
+    const { name, email, phone, password } = this.state;
+    axios.post("/register", { name, phone, email, password }).then(res => {
       console.log(res);
     });
   };
@@ -28,22 +29,49 @@ class Register extends React.Component {
       <div>
         <h2>Register below</h2>
         <form onSubmit={this.handleSubmit}>
-          <label htmlFor="email">Enter your email</label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            onChange={this.onChange}
-          />
-          <br></br>
-          <label htmlFor="password">Enter your password</label>
-          <input
-            id="password"
-            name="password"
-            type="password"
-            onChange={this.onChange}
-          />
-          <input type="submit" value="Register" />
+          <Form>
+            <Form.Group controlId="formBasicName">
+              <Form.Label>Full Name</Form.Label>
+              <Form.Control
+                name="name"
+                type="text"
+                placeholder="Enter name"
+                onChange={this.onChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicPhone">
+              <Form.Label>Phone Number</Form.Label>
+              <Form.Control
+                name="phone"
+                type="tel"
+                placeholder="Enter phone"
+                onChange={this.onChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicEmail">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                name="email"
+                type="email"
+                placeholder="Enter email"
+                onChange={this.onChange}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="formBasicPassword">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                name="password"
+                type="password"
+                placeholder="Password"
+                onChange={this.onChange}
+              />
+            </Form.Group>
+
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
+          </Form>
         </form>
       </div>
     );

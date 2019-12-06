@@ -10,7 +10,7 @@ const ListingCard = props => {
       <Card.Body>
         <Card.Title>{props.listing.title}</Card.Title>
         <Card.Text>{props.listing.address}</Card.Text>
-        <Link to={{ pathname: `/listing/${props.listing.id}` }}>
+        <Link to={{ pathname: `/listing/${props.listing._id}` }}>
           <Button variant="primary">View</Button>
         </Link>
       </Card.Body>

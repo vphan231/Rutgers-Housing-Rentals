@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ListingCard from "../components/ListingCard";
 import { CardColumns, Row, Col } from "react-bootstrap";
-import logo from '../photos/ru-stadium.png';
+import logo from '../web-photos/ru-stadium.png';
 class MainPage extends React.Component {
   constructor(props) {
     super(props);

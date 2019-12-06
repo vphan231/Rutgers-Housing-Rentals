@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ListingCard from "../components/ListingCard";
 import { CardColumns, Row, Col } from "react-bootstrap";
+import logo from '../photos/ru-stadium.png';
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
@@ -56,7 +57,9 @@ class MainPage extends React.Component {
   render() {
     return (
       <div>
-        Welcome to roundabout rentals. <br></br>
+        <img src={logo} class="img-rounded" width="1110" height="420"></img>
+        <br></br>
+        <br></br>
         <Row>
           {this.state.listings.map((item, key) => (
             <Col>

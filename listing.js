@@ -14,10 +14,11 @@ var listingSchema = new mongoose.Schema({
     Is_Available: Boolean
   });
   var Listing = mongoose.model('Listing', listingSchema);
-  var Wyckoff = new Listing({ title: 'New Listing', Description: 'House',address: '39 Wyckoff Street',price: '6050',
+  /*var Wyckoff = new Listing({ title: 'New Listing', Description: 'House',address: '39 Wyckoff Street',price: '6050',
                             Max_Occupancy:'9',Has_Driveway: 'false',Is_Available: "false" });
   console.log(Wyckoff.name); 
   Wyckoff.save(function (err, Wyckoff) {
     if (err) return console.error(err);
   });
+  */
   mongoose.disconnect;

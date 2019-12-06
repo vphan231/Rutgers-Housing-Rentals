@@ -11,9 +11,10 @@ var userSchema = new mongoose.Schema({
     password: String
   });
   var Landlord = mongoose.model('Landlord', userSchema);
-  var Colin = new Landlord({ name: 'Colin', email:'email@gmail.com',phone: '6094201234',password:'password' });
+  /*var Colin = new Landlord({ name: 'Colin', email:'email@gmail.com',phone: '6094201234',password:'password' });
   console.log(Colin.name); 
   Colin.save(function (err, Colin) {
     if (err) return console.error(err);
   });
+  */
   mongoose.disconnect;

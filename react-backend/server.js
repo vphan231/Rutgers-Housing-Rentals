@@ -8,7 +8,7 @@ var mongoose = require("mongoose");
 var autoIncrement = require("mongoose-auto-increment");
 
 mongoose.connect(
-  "mongodb+srv://roundabout:password!@roundabout-qktc6.mongodb.net/test?retryWrites=true&w=majority"
+  "mongodb+srv://roundabout:password!@roundabout-qktc6.mongodb.net/Roundabout?retryWrites=true&w=majority"
 );
 
 autoIncrement.initialize(mongoose.connection);

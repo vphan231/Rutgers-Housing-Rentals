@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 var router = express.Router();
 const User = require("../models/User");
+const Listing = require("../models/Listing");
 const { check, validationResult } = require('express-validator');
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -35,6 +36,41 @@ router.post("/register", [
     } else {
       console.log("Saved user to DB");
       res.send("User added successfully!");
+    }
+  });
+});
+/* POST createListing */
+router.post("/createlisting", [
+  check('title').isLength({ min: 3 }),
+  check('address').isLength({ min: 3 }),
+  check('maxocc').isNumeric(),
+  check('rent').isNumeric(),
+  check('hasdrive').isBoolean,
+  check('isavail').isBoolean,
+  check('imagesrc').isString().isLength({min:5, max:200})
+], (req, res) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() })
+  }
+  const listing = new Listing({
+    title: req.body.title,
+    description: req.body.description,
+    address: req.body.address,
+    price: req.body.rent,
+    Max_Occupancy: req.body.maxocc,
+    Has_Driveway: req.body.hasdrive,
+    Is_Available: req.body.isavail,
+    imgSrc: req.body.imagesrc,
+    listedBy: req.body.listedby 
+  })
+  listing.save(error => {
+    if (error || !errors.isEmpty()) {
+      console.log("Error saving listing");
+      res.send(error);
+    } else {
+      console.log("Saved listing to DB");
+      res.send("Listing added successfully!");
     }
   });
 });

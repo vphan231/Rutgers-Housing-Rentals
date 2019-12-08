@@ -5,7 +5,7 @@ import { Card, Button } from "react-bootstrap";
 
 const ListingCard = props => {
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card style={{ width: "15rem" }}>
       <Card.Img variant="top" src={props.listing.imageSrc} />
       <Card.Body>
         <Card.Title>{props.listing.title}</Card.Title>

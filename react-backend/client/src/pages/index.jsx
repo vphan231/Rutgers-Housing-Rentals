@@ -4,6 +4,7 @@ import ListingCard from "../components/ListingCard";
 import ListingSearch from '../components/ListingSearch'
 import { CardColumns, Row, Col } from "react-bootstrap";
 import logo from '../web-photos/ru-stadium-text.png';
+import GoogleMap from '../components/GoogleMap'
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
@@ -63,11 +64,19 @@ class MainPage extends React.Component {
         <br></br>
         <ListingSearch/>
         <Row>
-          {this.state.listings.map((item, key) => (
-            <Col>
-              <ListingCard listing={item} key={item.id} />
-            </Col>
-          ))}
+          <Col>
+            <GoogleMap />
+          </Col>
+
+          <Col>
+            <Row>
+              {this.state.listings.map((item, key) => (
+                <Col>
+                  <ListingCard listing={item} key={item.id} />
+                </Col>
+              ))}
+            </Row>
+          </Col>
         </Row>
       </div>
     );

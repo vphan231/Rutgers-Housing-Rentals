@@ -7,7 +7,6 @@ import {
     useParams
   } from "react-router-dom";
 
-
 const Listing = () => {
     let { id } = useParams();
 

@@ -74,4 +74,14 @@ router.post("/createlisting", [
     }
   });
 });
+/* GET listing. */
+router.get("/listing/:id", function(req, res, next) {
+  var listings = db.get('listings');
+
+  listings.findById(req.params.id, function(err, listing){
+    res.render('show',{
+      "listing": listing
+    });
+  });
+});
 module.exports = router;

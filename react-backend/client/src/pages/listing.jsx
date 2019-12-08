@@ -13,7 +13,7 @@ const Listing = () => {
 
     let { id } = useParams();
 
-    axios.get('/listing/'+id)
+    axios.get(id)
         .then(function (response) {
             console.log(response);
         })

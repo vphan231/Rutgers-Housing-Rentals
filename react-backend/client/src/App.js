@@ -17,6 +17,7 @@ import Listing from "./pages/listing";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import CreateListing from "./pages/createlisting";
+import MyListings from "./pages/mylistings";
 import NotFoundPage from "./pages/404";
 
 // Components
@@ -34,6 +35,7 @@ class App extends Component {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/dashboard" component={Dashboard} />
+            <Route path="/mylistings" component={MyListings} />
             <Route path="/createlisting" component={CreateListing} />
             <Route path="/listing/:id" children={<Listing />} />
             <Route exact path="/404" component={NotFoundPage} />

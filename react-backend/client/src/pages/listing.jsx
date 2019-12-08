@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import {
     BrowserRouter as Router,
     Switch,
@@ -9,10 +10,22 @@ import {
 
 
 const Listing = () => {
+    //this.state = { title: "", address: "", price: "", Max_Occupancy: "", Has_Driveway: "", Is_Available: "", imageSrc: "" };
+
     let { id } = useParams();
 
+    axios.get('/listing/'+id)
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+    });
+
     return (
-        <div>Listing id: {id}</div>
+        <div>
+            Listing id: {id}
+        </div>
     );
 }
 

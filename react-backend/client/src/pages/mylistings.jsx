@@ -45,6 +45,11 @@ class MyListings extends React.Component {
     render() {
         return (
             <div>
+            <Button
+                link href="/createlisting"
+                title="Create Listing" >
+            Create Listing
+            </Button>
             <Col>
                 {this.state.myListings.map((item, key) => (
                     <Row>

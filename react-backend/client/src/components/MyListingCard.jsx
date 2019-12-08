@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 
 // Todo: change Edit button Link to an edit listing form
+// todo: Delete Listing button functionality
 const MyListingCard = props => {
     return (
         <Card style={{width: "45rem"}}>
@@ -18,6 +19,9 @@ const MyListingCard = props => {
                 </Link>
                 <Button variant="primary" type="submit">
                     Publish
+                </Button>
+                <Button variant="primary" type="button">
+                    Delete listing
                 </Button>
             </Card.Body>
         </Card>

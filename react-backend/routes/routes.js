@@ -8,9 +8,10 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 /* GET home page. */
-router.get("/", function(req, res, next) {
+router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
+<<<<<<< HEAD
 /* GET Listing */
 router.route('/grabAll').get((req, res) => {
   Listing.find((error, data) => {
@@ -31,12 +32,14 @@ router.route('/grabListing').get((req, res) => {
     }
   });
 });
+=======
+>>>>>>> fb7746c3377e9e5b98441ad40f1d2939dd1d0d8d
 /* POST register */
 router.post("/register", [
   check('name').isLength({ min: 3 }),
   check('email').isEmail(),
   check('phone').isMobilePhone().withMessage('Please enter a valid phone number'),
-  check('password').isString().isLength({min:5, max:15}).withMessage('Please enter a password between 5 and 15 characters')
+  check('password').isString().isLength({ min: 5, max: 15 }).withMessage('Please enter a password between 5 and 15 characters')
 ], (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -65,9 +68,9 @@ router.post("/createlisting", [
   check('address').isLength({ min: 3 }),
   check('maxocc').isNumeric(),
   check('rent').isNumeric(),
-  check('hasdrive').isBoolean,
-  check('isavail').isBoolean,
-  check('imagesrc').isString().isLength({min:5, max:200})
+  check('hasdrive').isBoolean(),
+  check('isavail').isBoolean(),
+  check('imagesrc').isString().isLength({ min: 5, max: 200 })
 ], (req, res) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -82,7 +85,7 @@ router.post("/createlisting", [
     Has_Driveway: req.body.hasdrive,
     Is_Available: req.body.isavail,
     imgSrc: req.body.imagesrc,
-    listedBy: req.body.listedby 
+    listedBy: req.body.listedby
   })
   listing.save(error => {
     if (error || !errors.isEmpty()) {
@@ -94,5 +97,15 @@ router.post("/createlisting", [
     }
   });
 });
-
+router.post("/deletelisting", function (req, res) 
+{
+  var id = req.body.id
+  console.log(id)
+  Listing.findByIdAndRemove(id, function(err,data)
+{
+    if(!err){
+        console.log("Deleted listing " + id);
+    }
+});
+})
 module.exports = router;

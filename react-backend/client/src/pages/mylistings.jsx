@@ -10,7 +10,6 @@ import {
 } from "react-router-dom";
 import { Button, CardColumns, Row, Col } from "react-bootstrap";
 import MyListingCard from "../components/MyListingCard";
-
 class MyListings extends React.Component {
     constructor(props) {
         super(props);
@@ -51,15 +50,15 @@ class MyListings extends React.Component {
             Create Listing
             </Button>
             <Col>
-                {this.state.myListings.map((item, key) => (
+                {this.state.myListings.map((item, i) => (
+                      <div key={i}>
                     <Row>
-                        <MyListingCard listing={item} key={item.id} />
-                    </Row>
+                        <MyListingCard listing={item} key={i} />
+                    </Row></div>
                 ))}
             </Col>
             </div>
         );
     }
 }
-
 export default MyListings;

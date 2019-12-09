@@ -59,21 +59,21 @@ class MainPage extends React.Component {
   render() {
     return (
       <div>
-        <img src={logo} class="img-rounded" width="1110" height="420"></img>
+        <img src={logo} className="img-rounded" width="1110" height="420"></img>
         <br></br>
         <br></br>
-        <ListingSearch/>
+        <ListingSearch />
         <Row>
           <Col>
             <GoogleMap />
           </Col>
-
           <Col>
             <Row>
-              {this.state.listings.map((item, key) => (
-                <Col>
-                  <ListingCard listing={item} key={item.id} />
-                </Col>
+              {this.state.listings.map((item, i) => (
+                <div key={i}>
+                  <Col>
+                    <ListingCard listing={item} />
+                  </Col></div>
               ))}
             </Row>
           </Col>
@@ -82,5 +82,4 @@ class MainPage extends React.Component {
     );
   }
 }
-
 export default MainPage;

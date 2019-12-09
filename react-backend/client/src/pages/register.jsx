@@ -5,10 +5,10 @@ import {
   Switch,
   Route,
   Link,
-  useParams
+  useParams,
+  Redirect
 } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-
 class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -25,6 +25,7 @@ class Register extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   render() {
+    if (this.state.redirect) return <Redirect to='/' />;
     return (
       <div>
         <h2>Register below</h2>
@@ -57,7 +58,6 @@ class Register extends React.Component {
                 onChange={this.onChange}
               />
             </Form.Group>
-
             <Form.Group controlId="formBasicPassword">
               <Form.Label>Password</Form.Label>
               <Form.Control
@@ -67,7 +67,6 @@ class Register extends React.Component {
                 onChange={this.onChange}
               />
             </Form.Group>
-
             <Button variant="primary" type="submit">
               Submit
             </Button>
@@ -77,5 +76,4 @@ class Register extends React.Component {
     );
   }
 }
-
 export default Register;

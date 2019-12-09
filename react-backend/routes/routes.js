@@ -82,6 +82,7 @@ router.post("/deletelisting", function (req, res)
 {
     if(!err){
         console.log("Deleted listing " + id);
+        this.forceUpdate();
     }
 });
 })

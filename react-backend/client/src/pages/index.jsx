@@ -9,11 +9,12 @@ import axios from "axios";
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
-    //todo fetch listings from server and fill state with them
+    // Initialize listings
     this.state = {
       listings: []
     };
   }
+  // Make request to backend to grab listings from db
   componentDidMount() {
     axios.get('/grabAll').then(res => {
       this.setState({ listings: res.data });

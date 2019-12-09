@@ -11,7 +11,6 @@ app.use(bodyParser.json());
 router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
-<<<<<<< HEAD
 /* GET Listing */
 router.route('/grabAll').get((req, res) => {
   Listing.find((error, data) => {
@@ -32,8 +31,6 @@ router.route('/grabListing').get((req, res) => {
     }
   });
 });
-=======
->>>>>>> fb7746c3377e9e5b98441ad40f1d2939dd1d0d8d
 /* POST register */
 router.post("/register", [
   check('name').isLength({ min: 3 }),

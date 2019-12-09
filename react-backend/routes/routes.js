@@ -21,6 +21,16 @@ router.route('/grabAll').get((req, res) => {
     }
   });
 });
+/* GET Individual Listing */
+router.route('/grabListing').get((req, res) => {
+  Listing.findById(req.params.id, (error, data) => {
+    if(error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  });
+});
 /* POST register */
 router.post("/register", [
   check('name').isLength({ min: 3 }),

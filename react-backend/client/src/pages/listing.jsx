@@ -26,13 +26,13 @@ class Listing extends React.Component {
             this.setState({ listing: res.data });
         }).catch(function (error) {
             console.log(error);
-        });
+        })
 
         axios.get('/grabAll').then(res => {
             this.setState({ listings: res.data });
           }).catch(function (error) {
             console.log(error);
-          });
+        });
     };
     render() {
         return (

@@ -22,7 +22,7 @@ router.route('/grabAll').get((req, res) => {
   });
 });
 /* GET Individual Listing */
-router.get('/:id', (req, res) => {
+router.get('/:id', (req, res, next) => {
   Listing.findById(req.params.id, (error, data) => {
     if(error) {
       return next(error)

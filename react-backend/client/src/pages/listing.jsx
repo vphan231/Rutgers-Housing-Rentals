@@ -15,10 +15,10 @@ class Listing extends React.Component {
             listing: [],
         };
     }
-
     // Make request to backend to grab individual listing information
     componentDidMount() {
-        axios.get('/57').then(res => {
+        const { id } = this.props.match.params
+        axios.get('/'+ {id}.id ).then(res => {
             this.setState({ listing: res.data });
         }).catch(function (error) {
             console.log(error);

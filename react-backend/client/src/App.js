@@ -37,7 +37,7 @@ class App extends Component {
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/mylistings" component={MyListings} />
             <Route path="/createlisting" component={CreateListing} />
-            <Route path="/listing/:id" children={<Listing />} />
+            <Route path="/listing/:id" component={Listing} />
             <Route exact path="/404" component={NotFoundPage} />
             <Redirect to="/404" />
           </Switch>

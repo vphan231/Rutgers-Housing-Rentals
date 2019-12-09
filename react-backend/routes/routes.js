@@ -11,6 +11,16 @@ app.use(bodyParser.json());
 router.get("/", function(req, res, next) {
   res.render("index", { title: "Express" });
 });
+/* GET Listing */
+router.route('/grabAll').get((req, res) => {
+  Listing.find((error, data) => {
+    if(error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  });
+});
 /* POST register */
 router.post("/register", [
   check('name').isLength({ min: 3 }),
@@ -74,4 +84,5 @@ router.post("/createlisting", [
     }
   });
 });
+
 module.exports = router;

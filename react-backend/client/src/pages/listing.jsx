@@ -12,12 +12,13 @@ class Listing extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            listing: []
+            listing: [],
         };
     }
+
     // Make request to backend to grab individual listing information
     componentDidMount() {
-        axios.get('grabListing').then(res => {
+        axios.get('/57').then(res => {
             this.setState({ listing: res.data });
         }).catch(function (error) {
             console.log(error);

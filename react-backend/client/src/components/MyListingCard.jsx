@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
+import Alert from "react-native";
 
 // Todo: change Edit button Link to an edit listing form
 // todo: Delete Listing button functionality
@@ -20,7 +21,7 @@ const MyListingCard = props => {
                 <Button variant="primary" type="submit">
                     Publish
                 </Button>
-                <Button variant="primary" type="button">
+                <Button variant="primary" type="button" >
                     Delete listing
                 </Button>
             </Card.Body>

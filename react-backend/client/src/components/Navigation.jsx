@@ -7,6 +7,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
 
+//Navigate bar on each page that leads to respective page
 class Navigation extends React.Component {
   onLogoutClick = e => {
     e.preventDefault();

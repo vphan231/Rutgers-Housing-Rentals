@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { Card, Button } from "react-bootstrap";
 
+//Display each listing as a Listing Card in the HomePage and Individual Listing (Similar listing)
 const ListingCard = props => {
   return (
     <Card style={{ width: "15rem" }}>

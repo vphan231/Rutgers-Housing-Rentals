@@ -2,8 +2,8 @@ import React from "react";
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
 import { Card, Button, ButtonGroup, Redir } from "react-bootstrap";
-// Todo: change Edit button Link to an edit listing form
-// todo: Delete Listing button functionality
+
+// Display landlord own Listing
 class MyListingCard extends React.Component {
   constructor(props) {
     super(props);

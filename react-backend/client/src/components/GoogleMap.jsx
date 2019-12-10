@@ -1,6 +1,7 @@
 import React from "react";
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
+//Display GoogleMaps of Rutgers University Student Center and Housing
 class GoogleMap extends React.Component {
     constructor(props) {
       super(props);

@@ -12,7 +12,7 @@ router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
 /* GET Listing */
-router.route('/grabAll').get((req, res) => {
+router.route('/grabAll').get((req, res, next) => {
   Listing.find((error, data) => {
     if(error) {
       return next(error)

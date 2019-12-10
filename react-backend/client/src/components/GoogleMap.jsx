@@ -29,17 +29,16 @@ class GoogleMap extends React.Component {
       return (
           <Map
             google={this.props.google}
-            zoom={8}
+            zoom={14}
             style={{width: '90%',
                     height: '70%',}}
-            initialCenter={{ lat: 47.444, lng: -122.176}}
+            initialCenter={{ lat: 40.500, lng: -74.44}}
           >
-            {this.displayMarkers()}
           </Map>
       );
     }
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyCZQdWZWsNyakL3OEbvVherjO4c9HcqFc8'
+    apiKey: 'AIzaSyAvIbz4msIQRcp_6WCLcx-ha4Xot0A2apE'
   })(GoogleMap);

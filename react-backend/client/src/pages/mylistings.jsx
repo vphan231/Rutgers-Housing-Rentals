@@ -20,8 +20,7 @@ class MyListings extends React.Component {
     // todo: populate myListings with user's listings from db
     // todo: redirect user to homepage with error message if not logged in
 
-    this.state = {
-    };
+    this.state = {};
   }
   // Make request to backend to grab listings from db
   componentDidMount() {
@@ -39,7 +38,7 @@ class MyListings extends React.Component {
       .then(res => {
         this.setState({ listings: res.data });
         this.forceUpdate();
-        console.log(this.state);
+        console.log("state", this.state);
       })
       .catch(function(error) {
         console.log(error);
@@ -54,18 +53,26 @@ class MyListings extends React.Component {
     const { user } = this.props.auth;
     return (
       <div>
+        <Col>
+          {this.state.listings &&
+            this.state.listings.map((item, i) => (
+              <div key={i}>
+                <Row>
+                  <MyListingCard listing={item} key={i} />
+                </Row>
+              </div>
+            ))}
+        </Col>
+        {this.state.listings && this.state.listings.length < 1 && (
+          <p>
+            {" "}
+            Looks like you don't have any listings yet. Create your first
+            listing today!{" "}
+          </p>
+        )}
         <Button link href="/createlisting" title="Create Listing">
           Create Listing
         </Button>
-        <Col>
-          {this.state.listings && this.state.listings.map((item, i) => (
-            <div key={i}>
-              <Row>
-                <MyListingCard listing={item} key={i} />
-              </Row>
-            </div>
-          ))}
-        </Col>
       </div>
     );
   }

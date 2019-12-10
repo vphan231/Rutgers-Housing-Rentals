@@ -6,17 +6,43 @@ import {
   Route,
   Link,
   useParams,
-  Redirect
+  Redirect,
+  withRouter
 } from "react-router-dom";
+
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { registerUser } from "../actions/authActions";
+import classnames from "classnames";
+
 import { Form, Button } from "react-bootstrap";
 class Register extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { name: "", phone: "", email: "", password: "" };
+    this.state = { name: "", phone: "", email: "", password: "", errors: {} };
+  }
+  componentDidMount() {
+    // If logged in and user navigates to Register page, should redirect them to my listings
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/mylistings");
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
   }
   handleSubmit = e => {
     e.preventDefault();
     const { name, email, phone, password } = this.state;
+
+    this.props.registerUser(
+      { name, phone, email, password },
+      this.props.history
+    );
+
     axios
       .post("/register", { name, phone, email, password })
       .then(res => {
@@ -30,7 +56,9 @@ class Register extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   render() {
-    if (this.state.redirect) return <Redirect to='/' />;
+    if (this.state.redirect) return <Redirect to="/" />;
+    const { errors } = this.state;
+
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -43,7 +71,11 @@ class Register extends React.Component {
               type="text"
               placeholder="Enter name"
               onChange={this.onChange}
+              className={classnames("", {
+                invalid: errors.name
+              })}
             />
+            <span className="red-text">{errors.name}</span>
           </Form.Group>
           <Form.Group controlId="formBasicPhone">
             <Form.Label>Phone Number</Form.Label>
@@ -61,7 +93,11 @@ class Register extends React.Component {
               type="email"
               placeholder="Enter email"
               onChange={this.onChange}
+              className={classnames("", {
+                invalid: errors.email
+              })}
             />
+            <span className="red-text">{errors.email}</span>
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
@@ -71,7 +107,11 @@ class Register extends React.Component {
               type="password"
               placeholder="Password"
               onChange={this.onChange}
+              className={classnames("", {
+                invalid: errors.password
+              })}
             />
+            <span className="red-text">{errors.password}</span>
           </Form.Group>
 
           <Button variant="primary" type="submit">
@@ -82,4 +122,16 @@ class Register extends React.Component {
     );
   }
 }
-export default Register;
+
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(mapStateToProps, { registerUser })(withRouter(Register));

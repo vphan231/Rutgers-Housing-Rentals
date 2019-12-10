@@ -10,14 +10,37 @@ import {
 } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
 
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../actions/authActions";
+import classnames from "classnames";
+
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { email: "", password: "" };
+    this.state = { email: "", password: "", errors: {} };
+  }
+  componentDidMount() {
+    // If logged in and user navigates to Login page, should redirect them to my listings
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/mylistings");
+    }
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/mylistings"); // push user to dashboard when they login
+    }
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
   }
   handleSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state;
+
+    this.props.loginUser({ email, password });
     axios
       .post("/login", { email, password })
       .then(res => {
@@ -32,6 +55,7 @@ class Login extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   render() {
+    const { errors } = this.state;
     return (
       <div>
         <br />
@@ -43,7 +67,14 @@ class Login extends React.Component {
               type="email"
               placeholder="Enter email"
               onChange={this.onChange}
+              className={classnames("", {
+                invalid: errors.email || errors.emailnotfound
+              })}
             />
+            <span className="red-text">
+              {errors.email}
+              {errors.emailnotfound}
+            </span>
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
             </Form.Text>
@@ -56,7 +87,14 @@ class Login extends React.Component {
               type="password"
               placeholder="Password"
               onChange={this.onChange}
+              className={classnames("", {
+                invalid: errors.password || errors.passwordincorrect
+              })}
             />
+            <span className="red-text">
+              {errors.password}
+              {errors.passwordincorrect}
+            </span>
           </Form.Group>
           <Form.Group>
             <Link to="/register">
@@ -74,4 +112,16 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+    loginUser: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
+    errors: PropTypes.object.isRequired
+  };
+  const mapStateToProps = state => ({
+    auth: state.auth,
+    errors: state.errors
+  });
+  export default connect(
+    mapStateToProps,
+    { loginUser }
+  )(Login);

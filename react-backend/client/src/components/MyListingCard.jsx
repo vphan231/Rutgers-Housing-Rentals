@@ -11,9 +11,8 @@ class MyListingCard extends React.Component {
     }
     deleteListing = e => {
         e.preventDefault();
-        var id = this.props.listing._id
+        const id = this.props.listing._id
         axios.post("/deletelisting", { id }).then(res => {
-            console.log(res);
             this.state.redirect = true;
             this.forceUpdate();
         });
@@ -31,7 +30,7 @@ class MyListingCard extends React.Component {
                      <Link to={{ pathname: `/listing/${this.props.listing._id}` }}>
                          <Button variant="primary">View</Button>
                      </Link>
-                     <Link to={{ pathname: `/listing/${this.props.listing._id}` }}>
+                     <Link to={{ pathname: `/editlisting/${this.props.listing._id}`}}>
                          <Button variant="primary">Edit</Button>
                      </Link>
                      <Button variant="primary" type="submit">

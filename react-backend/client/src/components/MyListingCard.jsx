@@ -2,13 +2,13 @@ import React from "react";
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
 import { Card, Button, ButtonGroup, Redir } from "react-bootstrap";
-
 // Display landlord own Listing
 class MyListingCard extends React.Component {
   constructor(props) {
     super(props);
     this.state = { redirect: false };
   }
+  //Delete a listing by sending a post request to routes.js with the id of the listing to delete 
   deleteListing = e => {
     e.preventDefault();
     const id = this.props.listing._id;
@@ -32,13 +32,11 @@ class MyListingCard extends React.Component {
                 View
               </Link>
             </Button>
-
             <Button variant="primary">
               <Link to={{ pathname: `/editlisting/${this.props.listing._id}` }}>
                 Edit
               </Link>
             </Button>
-            
             <Button
               variant="primary"
               type="button"

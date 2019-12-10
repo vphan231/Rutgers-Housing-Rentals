@@ -88,8 +88,6 @@ router.post(
     });
   }
 );
-
-
 /* GET Listing */
 router.route("/grabAll").get((req, res, next) => {
   if (req.query.id != null) {
@@ -162,6 +160,7 @@ router.post(
     });
   }
 );
+//Delete a listing from the DB by _id
 router.post("/deletelisting", function(req, res) {
   var id = req.body.id;
   console.log(id);
@@ -171,6 +170,8 @@ router.post("/deletelisting", function(req, res) {
     }
   });
 });
+//Update a listing by _id, leaving id the same and updating all other fields
+//Validate fields using express-validator
 router.post(
   "/updatelisting",
   [

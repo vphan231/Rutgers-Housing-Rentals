@@ -7,6 +7,7 @@ import {
   Route,
   Switch,
   Link,
+  withRouter,
   Redirect
 } from "react-router-dom";
 import { Container } from "react-bootstrap";
@@ -37,7 +38,10 @@ class App extends Component {
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/mylistings" component={MyListings} />
             <Route path="/createlisting" component={CreateListing} />
-            <Route path="/listing/:id" children={<Listing />} />
+            <Route
+              path="/listing/:id"
+              render={props => <Listing {...props} key={Math.random()} />}
+            />
             <Route exact path="/404" component={NotFoundPage} />
             <Redirect to="/404" />
           </Switch>

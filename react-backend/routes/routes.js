@@ -11,7 +11,7 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 /* GET home page. */
-router.get("/", function(req, res, next) {
+router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
 
@@ -97,47 +97,72 @@ router.post(
   }
 );
 
-/* POST createListing */
-router.post(
-  "/createlisting",
-  [
-    check("title").isLength({ min: 3 }),
-    check("address").isLength({ min: 3 }),
-    check("maxocc").isNumeric(),
-    check("rent").isNumeric(),
-    check("hasdrive").isBoolean(),
-    check("isavail").isBoolean(),
-    check("imagesrc")
-      .isString()
-      .isLength({ min: 5, max: 200 })
-  ],
-  (req, res) => {
-    console.log("Received request: ", res.body);
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
+/* GET Listing */
+router.route('/grabAll').get((req, res, next) => {
+  Listing.find((error, data) => {
+    if(error) {
+      return next(error)
+    } else {
+      res.json(data)
     }
-    const listing = new Listing({
-      title: req.body.title,
-      description: req.body.description,
-      address: req.body.address,
-      price: req.body.rent,
-      Max_Occupancy: req.body.maxocc,
-      Has_Driveway: req.body.hasdrive,
-      Is_Available: req.body.isavail,
-      imgSrc: req.body.imagesrc,
-      listedBy: req.body.listedby
-    });
-    console.log(listing);
-    listing.save(error => {
-      if (error || !errors.isEmpty()) {
-        console.log("Error saving listing");
-        res.send(error);
-      } else {
-        console.log("Saved listing to DB");
-        res.send("Listing added successfully!");
-      }
-    });
+  });
+});
+/* GET Individual Listing */
+router.get('/:id', (req, res, next) => {
+  Listing.findById(req.params.id, (error, data) => {
+    if(error) {
+      return next(error)
+    } else {
+      res.json(data)
+    }
+  });
+});
+
+/* POST createListing */
+router.post("/createlisting", [
+  check('title').isLength({ min: 3 }),
+  check('address').isLength({ min: 3 }),
+  check('maxocc').isNumeric(),
+  check('rent').isNumeric(),
+  check('hasdrive').isBoolean(),
+  check('isavail').isBoolean(),
+  check('imagesrc').isString().isLength({ min: 5, max: 200 })
+], (req, res) => {
+  const errors = validationResult(req)
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() })
   }
-);
+  const listing = new Listing({
+    title: req.body.title,
+    description: req.body.description,
+    address: req.body.address,
+    price: req.body.rent,
+    Max_Occupancy: req.body.maxocc,
+    Has_Driveway: req.body.hasdrive,
+    Is_Available: req.body.isavail,
+    imgSrc: req.body.imagesrc,
+    listedBy: req.body.listedby
+  })
+  listing.save(error => {
+    if (error || !errors.isEmpty()) {
+      console.log("Error saving listing");
+      res.send(error);
+    } else {
+      console.log("Saved listing to DB");
+      res.send("Listing added successfully!");
+    }
+  });
+});
+router.post("/deletelisting", function (req, res) 
+{
+  var id = req.body.id
+  console.log(id)
+  Listing.findByIdAndRemove(id, function(err,data)
+{
+    if(!err){
+        console.log("Deleted listing " + id);
+        this.forceUpdate();
+    }
+});
+})
 module.exports = router;

@@ -5,10 +5,10 @@ import {
   Switch,
   Route,
   Link,
-  useParams
+  useParams,
+  Redirect
 } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-
 class Register extends React.Component {
   constructor(props) {
     super(props);
@@ -30,6 +30,7 @@ class Register extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
   render() {
+    if (this.state.redirect) return <Redirect to='/' />;
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -81,5 +82,4 @@ class Register extends React.Component {
     );
   }
 }
-
 export default Register;

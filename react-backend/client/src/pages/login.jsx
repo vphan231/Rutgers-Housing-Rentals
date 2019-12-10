@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import { loginUser } from "../actions/authActions";
 import classnames from "classnames";
 
+//Login Page
 class Login extends React.Component {
   constructor(props) {
     super(props);

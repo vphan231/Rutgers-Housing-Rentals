@@ -10,7 +10,8 @@ import {
   Link,
   useParams
 } from "react-router-dom";
-// todo: map listing information to page
+// Individual lisiting page
+// Display all perams of listing with landlord details
 class Listing extends React.Component {
   constructor(props) {
     super(props);
@@ -62,20 +63,23 @@ class Listing extends React.Component {
           
           </Col>
         </Row>
+        <br />
 
-        <br />
-        <h3>Features</h3>
-        <p>
-          &emsp;Has Driveway {this.state.listing.Has_Driveway}
-          <br />
-          &emsp;Is Available {this.state.listing.Is_Available}
-        </p>
-        <br />
         <h3>Description of listing</h3>
         <p>&emsp;{this.state.listing.description}</p>
         <br />
         <Row>
           <Col>
+            <h3>Features</h3>
+            <p>
+                &emsp;Has Driveway {this.state.listing.Has_Driveway}
+                <br />
+                &emsp;Is Available {this.state.listing.Is_Available}
+            </p>
+            <br />
+            <h3>Description of listing</h3>
+            <p>&emsp;{this.state.listing.description}</p>
+            <br />
             <h3>Contact Landlord</h3>
             <p>
               &emsp;Landlord Name: Ruslan Volyar

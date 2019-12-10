@@ -12,6 +12,7 @@ import { Form, Button } from "react-bootstrap";
 
 import jwt_decode from "jwt-decode";
 
+//Landlord's Create Listing Page
 class Createlisting extends React.Component {
   constructor(props) {
     super(props);

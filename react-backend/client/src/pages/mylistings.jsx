@@ -14,6 +14,8 @@ import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
 import { Button, CardColumns, Row, Col } from "react-bootstrap";
 import MyListingCard from "../components/MyListingCard";
+
+//Landlord's Listing page 
 class MyListings extends React.Component {
   constructor(props) {
     super(props);

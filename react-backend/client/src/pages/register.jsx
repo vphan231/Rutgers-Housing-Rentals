@@ -16,6 +16,8 @@ import { registerUser } from "../actions/authActions";
 import classnames from "classnames";
 
 import { Form, Button } from "react-bootstrap";
+
+//Register Page
 class Register extends React.Component {
   constructor(props) {
     super(props);

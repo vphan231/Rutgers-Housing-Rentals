@@ -7,7 +7,7 @@ import {
     useParams
   } from "react-router-dom";
 
-
+//Error page
 const NotFoundPage = () => {
     let { id } = useParams();
 

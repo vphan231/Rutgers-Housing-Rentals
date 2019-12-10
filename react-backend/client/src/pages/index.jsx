@@ -6,6 +6,8 @@ import { CardColumns, Row, Col } from "react-bootstrap";
 import logo from "../web-photos/ru-stadium-text.png";
 import GoogleMap from "../components/GoogleMap";
 import axios from "axios";
+
+//Home Page
 class MainPage extends React.Component {
   constructor(props) {
     super(props);

@@ -8,6 +8,8 @@ import {
     Redirect
 } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
+
+//Landlord's EditListing Page
 class EditListing extends React.Component {
     constructor(props) {
         super(props);

@@ -53,22 +53,22 @@ class Listing extends React.Component {
         <br />
         <Row>
           <Col>
-            <h4>Address</h4>
-            <p>&emsp;{this.state.listing.address}</p>
-          </Col>
-          <Col>
-            <h2>
-              {this.state.listing.Max_Occupancy} people at $
-              {this.state.listing.price}/mo
-            </h2>
+            <h4>{this.state.listing.address} fitting {this.state.listing.Max_Occupancy} people at $
+              {this.state.listing.price}/mo</h4>
           </Col>
         </Row>
+        <Row>
+          <Col>
+          
+          </Col>
+        </Row>
+
         <br />
         <h3>Features</h3>
         <p>
-          &emsp;Has Driveway: {this.state.listing.Has_Driveway}
+          &emsp;Has Driveway {this.state.listing.Has_Driveway}
           <br />
-          &emsp;Is Available: {this.state.listing.Is_Available}
+          &emsp;Is Available {this.state.listing.Is_Available}
         </p>
         <br />
         <h3>Description of listing</h3>
@@ -78,11 +78,11 @@ class Listing extends React.Component {
           <Col>
             <h3>Contact Landlord</h3>
             <p>
-              &emsp;Landlord Name:
+              &emsp;Landlord Name: Ruslan Volyar
               <br />
-              &emsp;Landlord Phone:
+              &emsp;Landlord Phone: 973 738 7618
               <br />
-              &emsp;Landlord Email:
+              &emsp;Landlord Email: rvolyar@gmail.com
               <br />
             </p>
           </Col>

@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Link,
-  withRouter,
   Redirect
 } from "react-router-dom";
 import { Container } from "react-bootstrap";
@@ -26,6 +24,7 @@ import CreateListing from "./pages/createlisting";
 import MyListings from "./pages/mylistings";
 import NotFoundPage from "./pages/404";
 import PrivateRoute from "./private-route/PrivateRoute";
+import EditListingPage from "./pages/editlisting";
 
 // Components
 import Navigation from "./components/Navigation";
@@ -51,6 +50,7 @@ if (localStorage.jwtToken) {
 
 //               <Route exact path="/mylistings" component={MyListings} />
 
+// Components
 class App extends Component {
   render() {
     return (
@@ -62,6 +62,7 @@ class App extends Component {
               <Route exact path="/" component={MainPage} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
+              <Route path="/editlisting" component={EditListingPage} />
 
               <Route exact path="/createlisting" component={CreateListing} />
 
@@ -82,5 +83,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;

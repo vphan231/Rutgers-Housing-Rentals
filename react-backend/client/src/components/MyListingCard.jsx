@@ -11,9 +11,8 @@ class MyListingCard extends React.Component {
   }
   deleteListing = e => {
     e.preventDefault();
-    var id = this.props.listing._id;
+    const id = this.props.listing._id;
     axios.post("/deletelisting", { id }).then(res => {
-      console.log(res);
       this.state.redirect = true;
       this.forceUpdate();
     });
@@ -24,28 +23,22 @@ class MyListingCard extends React.Component {
     if (this.state.redirect) return <Redirect to="/mylistings" />;
     return (
       <Card style={{ width: "30rem", marginBottom: "10px" }}>
-        <Card.Img variant="top" src={this.props.listing.imageSrc} />
+        <Card.Img variant="top" src={this.props.listing.imgSrc} />
         <Card.Body>
           <Card.Title>{this.props.listing.title}</Card.Title>
           <Card.Text>{this.props.listing.address}</Card.Text>
-          <ButtonGroup>
-            <Button>
-              <Link to={{ pathname: `/listing/${this.props.listing._id}` }}>
-                View
-              </Link>
-            </Button>
-
-            <Button>
-              <Link to={{ pathname: `/listing/${this.props.listing._id}` }}>
-                Edit
-              </Link>
-            </Button>
-
-            <Button type="submit">Publish</Button>
-            <Button type="button" onClick={this.deleteListing}>
-              Delete listing
-            </Button>
-          </ButtonGroup>
+          <Link to={{ pathname: `/listing/${this.props.listing._id}` }}>
+            <Button variant="primary">View</Button>
+          </Link>
+          <Link to={{ pathname: `/editlisting/${this.props.listing._id}` }}>
+            <Button variant="primary">Edit</Button>
+          </Link>
+          <Button variant="primary" type="submit">
+            Publish
+          </Button>
+          <Button variant="primary" type="button" onClick={this.deleteListing}>
+            Delete listing
+          </Button>
         </Card.Body>
       </Card>
     );

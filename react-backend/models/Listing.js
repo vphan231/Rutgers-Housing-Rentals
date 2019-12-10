@@ -9,7 +9,7 @@ var listingSchema = new mongoose.Schema({
   Has_Driveway: Boolean,
   Is_Available: Boolean,
   imgSrc: String,
-  listedBy: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  listedBy: {type: mongoose.Schema.Types.Number, ref: 'User'}
 });
 
 listingSchema.plugin(autoIncrement.plugin, "Listing");

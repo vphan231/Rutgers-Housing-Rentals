@@ -5,7 +5,7 @@ var userSchema = new mongoose.Schema({
   email: String,
   phone: Number,
   password: String,
-  listings: [{ type: mongoose.Schema.Types.ObjectId, ref: "Listing" }]
+  listings: [{ type: mongoose.Schema.Types.Number, ref: "Listing" }]
 });
 userSchema.plugin(autoIncrement.plugin, "User");
 

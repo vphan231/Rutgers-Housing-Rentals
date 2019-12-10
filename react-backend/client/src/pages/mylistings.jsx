@@ -8,6 +8,7 @@ import {
   Link,
   useParams
 } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
@@ -18,32 +19,33 @@ class MyListings extends React.Component {
     super(props);
     // todo: populate myListings with user's listings from db
     // todo: redirect user to homepage with error message if not logged in
+
     this.state = {
-      myListings: [
-        {
-          _id: 1,
-          title: "New Listing",
-          address: "39 Wyckoff Street",
-          price: 6050,
-          Max_Occupancy: "9",
-          Has_Driveway: false,
-          Is_Available: false,
-          imageSrc:
-            "https://d3mqmy22owj503.cloudfront.net/10/500010/images/poi/sample-house-2/10-logo.jpg"
-        },
-        {
-          _id: 2,
-          title: "New Listing 2",
-          address: "39 Wyckoff Street",
-          price: 6050,
-          Max_Occupancy: "9",
-          Has_Driveway: false,
-          Is_Available: false,
-          imageSrc: "https://i.ytimg.com/vi/Zw_bIr5W0-4/maxresdefault.jpg"
-        }
-      ]
     };
   }
+  // Make request to backend to grab listings from db
+  componentDidMount() {
+    let listedByID = "";
+    if (localStorage.jwtToken) {
+      // Set auth token header auth
+      const token = localStorage.jwtToken;
+      // setAuthToken(token);
+      // Decode token and get user info and exp
+      listedByID = jwt_decode(token).id;
+      console.log("decoded", listedByID);
+    }
+    axios
+      .get("/grabAll?id=".concat(listedByID))
+      .then(res => {
+        this.setState({ listings: res.data });
+        this.forceUpdate();
+        console.log(this.state);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
@@ -55,20 +57,8 @@ class MyListings extends React.Component {
         <Button link href="/createlisting" title="Create Listing">
           Create Listing
         </Button>
-        <Button
-          style={{
-            width: "150px",
-            borderRadius: "3px",
-            letterSpacing: "1.5px",
-            marginTop: "1rem"
-          }}
-          onClick={this.onLogoutClick}
-          className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-        >
-          Logout
-        </Button>
         <Col>
-          {this.state.myListings.map((item, i) => (
+          {this.state.listings && this.state.listings.map((item, i) => (
             <div key={i}>
               <Row>
                 <MyListingCard listing={item} key={i} />

@@ -38,9 +38,7 @@ class MyListingCard extends React.Component {
                 Edit
               </Link>
             </Button>
-            <Button variant="primary" type="submit">
-              Publish
-            </Button>
+            
             <Button
               variant="primary"
               type="button"

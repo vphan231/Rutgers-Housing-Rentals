@@ -28,7 +28,6 @@ class MainPage extends React.Component {
         <img src={logo} className="img-rounded" width="1110" height="420"></img>
         <br></br>
         <br></br>
-        <ListingSearch />
         <Row>
           <Col>
             <GoogleMap />

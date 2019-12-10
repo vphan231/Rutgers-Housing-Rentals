@@ -8,9 +8,9 @@ import {
     Redirect
 } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-
 //Landlord's EditListing Page
 class EditListing extends React.Component {
+    //Initialize the state to empty, and then grab Listing information from the id in the URL using a GET request 
     constructor(props) {
         super(props);
         this.state = { title: "", address: "", maxocc: "", description: "", rent: "", hasdrive: false, isavail: false, imagesrc: "", _id: "" };
@@ -34,6 +34,7 @@ class EditListing extends React.Component {
         });
         this.handleSubmit = this.handleSubmit.bind(this)
     }
+    //Send a post request to routes.js to update the listing with the newly inputted fields
     handleSubmit = e => {
         e.preventDefault();
         const updatedListing = this.state;
@@ -43,17 +44,21 @@ class EditListing extends React.Component {
             })
             this.forceUpdate()
     };
+    //When the text in the field changes, update the item state 
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value });
     };
+    //When a checkbox is checked/unchecked, update the checked state
     onCheckboxChange = e => {
         this.setState({ [e.target.name]: e.target.checked });
     };
     render() {
+        //Redirect to updated listing on submission of edits
         if(this.state.redirect)
         {
             return <Redirect to={{ pathname: `/listing/${this.state._id}`}}/>;
         }
+        //Render the view 
         return (
             <div>
                 <h1>EDIT LISTING </h1>

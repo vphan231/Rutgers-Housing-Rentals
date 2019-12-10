@@ -17,9 +17,14 @@ class Register extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     const { name, email, phone, password } = this.state;
-    axios.post("/register", { name, phone, email, password }).then(res => {
-      console.log(res);
-    });
+    axios
+      .post("/register", { name, phone, email, password })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        alert("invalid input");
+      });
   };
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -27,51 +32,50 @@ class Register extends React.Component {
   render() {
     return (
       <div>
-        <h2>Register below</h2>
         <form onSubmit={this.handleSubmit}>
-          <Form>
-            <Form.Group controlId="formBasicName">
-              <Form.Label>Full Name</Form.Label>
-              <Form.Control
-                name="name"
-                type="text"
-                placeholder="Enter name"
-                onChange={this.onChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="formBasicPhone">
-              <Form.Label>Phone Number</Form.Label>
-              <Form.Control
-                name="phone"
-                type="tel"
-                placeholder="Enter phone"
-                onChange={this.onChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control
-                name="email"
-                type="email"
-                placeholder="Enter email"
-                onChange={this.onChange}
-              />
-            </Form.Group>
+          <h2>Register below</h2>
 
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
-              <Form.Control
-                name="password"
-                type="password"
-                placeholder="Password"
-                onChange={this.onChange}
-              />
-            </Form.Group>
+          <Form.Group controlId="formBasicName">
+            <Form.Label>Full Name</Form.Label>
+            <Form.Control
+              name="name"
+              type="text"
+              placeholder="Enter name"
+              onChange={this.onChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicPhone">
+            <Form.Label>Phone Number</Form.Label>
+            <Form.Control
+              name="phone"
+              type="tel"
+              placeholder="Enter phone"
+              onChange={this.onChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control
+              name="email"
+              type="email"
+              placeholder="Enter email"
+              onChange={this.onChange}
+            />
+          </Form.Group>
 
-            <Button variant="primary" type="submit">
-              Submit
-            </Button>
-          </Form>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              name="password"
+              type="password"
+              placeholder="Password"
+              onChange={this.onChange}
+            />
+          </Form.Group>
+
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
         </form>
       </div>
     );

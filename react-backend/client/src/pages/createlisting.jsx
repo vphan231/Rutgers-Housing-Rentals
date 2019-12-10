@@ -22,7 +22,7 @@ import {
           axios.post("/createlisting", { title, address, maxocc, description, rent, hasdrive, isavail, imagesrc, listedby })
             .then(res => {
                 console.log(res);
-            });
+            }); 
       };
       onChange = e => {
           this.setState({ [e.target.name]: e.target.value });
@@ -35,7 +35,6 @@ import {
               <div>
                 <h1>CREATE LISTING</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <Form>
                         <Form.Group controlId="formBasicTitle">
                             <Form.Label>Title of Listing</Form.Label>
                             <Form.Control
@@ -105,7 +104,6 @@ import {
                         <Button variant="primary" type="submit">
                             Submit
                         </Button>
-                    </Form>
                 </form>  
               </div>
           );

@@ -16,8 +16,8 @@ class MyListingCard extends React.Component {
       this.state.redirect = true;
       this.forceUpdate();
     });
-    this.setState.redirect = true;
-    this.forceUpdate();
+    window.location.reload(false);
+
   };
   render() {
     if (this.state.redirect) return <Redirect to="/mylistings" />;

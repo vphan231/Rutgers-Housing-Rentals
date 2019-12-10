@@ -167,7 +167,6 @@ router.post("/deletelisting", function(req, res) {
   Listing.findByIdAndRemove(id, function(err, data) {
     if (!err) {
       console.log("Deleted listing " + id);
-      this.forceUpdate();
     }
   });
 });

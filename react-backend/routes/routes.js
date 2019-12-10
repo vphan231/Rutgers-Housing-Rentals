@@ -92,8 +92,9 @@ router.post(
 
 /* GET Listing */
 router.route("/grabAll").get((req, res, next) => {
-  if (req.query.landlordID != null) {
-    Listing.find({ listedBy: req.body.landlordID }, (error, data) => {
+  if (req.query.id != null) {
+    console.log('id', req.query);
+    Listing.find({ listedBy: req.query.id }, (error, data) => {
       if (error) {
         return next(error);
       } else {

@@ -8,7 +8,11 @@ class MyListingCard extends React.Component {
     super(props);
     this.state = { redirect: false };
   }
-  //Delete a listing by sending a post request to routes.js with the id of the listing to delete 
+  /**
+     * Gets called when the user clicks on the button, sends post request to /deletelisting
+     * @param {SyntheticEvent} e The react SyntheticEvent
+     * @param {Object} id id of the listing assiociated with the button
+     */
   deleteListing = e => {
     e.preventDefault();
     const id = this.props.listing._id;
@@ -19,6 +23,7 @@ class MyListingCard extends React.Component {
     window.location.reload(false);
   };
   render() {
+    //Redirect to my listings page after deleting a listing
     if (this.state.redirect) return <Redirect to="/mylistings" />;
     return (
       <Card style={{ width: "30rem", marginBottom: "10px" }}>
@@ -28,7 +33,7 @@ class MyListingCard extends React.Component {
           <Card.Text>{this.props.listing.address}</Card.Text>
           <ButtonGroup>
             <Button variant="primary">
-              <Link to={{ pathname: `/listing/${this.props.listing._id}` }}>
+              <Link to={{ pathname: `/listing/${this.props.listing._id}` }}> 
                 View
               </Link>
             </Button>

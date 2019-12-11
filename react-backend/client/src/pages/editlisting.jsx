@@ -10,7 +10,11 @@ import {
 import { Form, Button } from "react-bootstrap";
 //Landlord's EditListing Page
 class EditListing extends React.Component {
-    //Initialize the state to empty, and then grab Listing information from the id in the URL using a GET request 
+    /**
+     * Initialize this.state to empty
+     * Grab listing information from the id in the URL using a GET request
+     * @param {Object} props All props of this Button
+     */
     constructor(props) {
         super(props);
         this.state = { title: "", address: "", maxocc: "", description: "", rent: "", hasdrive: false, isavail: false, imagesrc: "", _id: "" };
@@ -34,7 +38,11 @@ class EditListing extends React.Component {
         });
         this.handleSubmit = this.handleSubmit.bind(this)
     }
-    //Send a post request to routes.js to update the listing with the newly inputted fields
+    /**
+     * Gets called when the user clicks on the submit button
+     * Sends a POST request to /updatelisting with the updated Listing model 
+     * @param {SyntheticEvent} e The react SyntheticEvent
+     */
     handleSubmit = e => {
         e.preventDefault();
         const updatedListing = this.state;
@@ -44,11 +52,11 @@ class EditListing extends React.Component {
             })
             this.forceUpdate()
     };
-    //When the text in the field changes, update the item state 
+    //When the text in the field changes, update the state with the information in the form fields 
     onChange = e => {
         this.setState({ [e.target.name]: e.target.value });
     };
-    //When a checkbox is checked/unchecked, update the checked state
+    //When a checkbox is checked/unchecked, update the state with the status of the checkbox
     onCheckboxChange = e => {
         this.setState({ [e.target.name]: e.target.checked });
     };

@@ -13,8 +13,14 @@ const ListingCard = props => {
     <Card style={{ width: "15rem" }}>
       <Card.Img variant="top" src={props.listing.imgSrc} />
       <Card.Body>
-        <Card.Title>{props.listing.title}</Card.Title>
-        <Card.Text>{props.listing.address}</Card.Text>
+        <Link to={{ pathname: `/listing/${props.listing._id}` }}>
+          <Card.Title>
+            {props.listing.address} <br />${props.listing.price} /{" "}
+            {props.listing.Max_Occupancy} people
+          </Card.Title>
+        </Link>
+
+        <Card.Text>{props.listing.title}</Card.Text>
         <Link to={{ pathname: `/listing/${props.listing._id}` }}>
           <Button variant="primary">View</Button>
         </Link>

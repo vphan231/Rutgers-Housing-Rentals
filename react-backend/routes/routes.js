@@ -91,7 +91,7 @@ router.post(
 /* GET Listing */
 router.route("/grabAll").get((req, res, next) => {
   if (req.query.id != null) {
-    console.log('id', req.query);
+    console.log("id", req.query);
     Listing.find({ listedBy: req.query.id }, (error, data) => {
       if (error) {
         return next(error);
@@ -99,6 +99,19 @@ router.route("/grabAll").get((req, res, next) => {
         res.json(data);
       }
     });
+  }
+  if ((req.query.minprice != null) & (req.query.maxprice != null)) {
+    console.log("prices:", req.query);
+    Listing.find(
+      { price: { $gt: req.query.minprice, $lt: req.query.maxprice } },
+      (error, data) => {
+        if (error) {
+          return next(error);
+        } else {
+          res.json(data);
+        }
+      }
+    );
   } else {
     Listing.find((error, data) => {
       if (error) {

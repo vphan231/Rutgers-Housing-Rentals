@@ -24,3 +24,9 @@
 .btn a{
   color:white !important;
 }
+.card-body a {
+  color:black;
+}
+.card-body a:hover {
+  color:black;
+}

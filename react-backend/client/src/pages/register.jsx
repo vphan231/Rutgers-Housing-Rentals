@@ -17,18 +17,27 @@ import classnames from "classnames";
 
 import { Form, Button } from "react-bootstrap";
 
-//Register Page
+/**
+ * Register page/form
+ * Initialize this.state to be empty
+ */
 class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = { name: "", phone: "", email: "", password: "", errors: {} };
   }
+  /**
+   * If user is logged in already, redirect them to MyListings page
+   */
   componentDidMount() {
-    // If logged in and user navigates to Register page, should redirect them to my listings
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/mylistings");
     }
   }
+  /**
+   * Receive props
+   * @param {*} nextProps 
+   */
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({
@@ -36,6 +45,11 @@ class Register extends React.Component {
       });
     }
   }
+  /**
+   * Called when user clicks the Submit button
+   * Makes POST request to /register and attempts to create a new user in the database
+   * with the submitted information
+   */
   handleSubmit = e => {
     e.preventDefault();
     const { name, email, phone, password } = this.state;
@@ -54,6 +68,9 @@ class Register extends React.Component {
         alert("invalid input");
       });
   };
+  /**
+   * Change text fields as they are inputted
+   */
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };

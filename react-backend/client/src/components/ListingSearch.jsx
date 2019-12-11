@@ -1,7 +1,10 @@
 import React from 'react';
 import {Form, Col, Button} from 'react-bootstrap'
 
-//Filter and Query with Mongo DB
+/**
+ * Listing Search: Filter and Query with Mongo DB
+ *
+ */
 function ListingSearch() {
   
   return (

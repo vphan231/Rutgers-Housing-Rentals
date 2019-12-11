@@ -1,7 +1,11 @@
 import React from "react";
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
-//Display GoogleMaps of Rutgers University Student Center and Housing
+/**
+ * Display GoogleMaps of Rutgers University Student Center and Housing
+ *
+ * @param {List} stores: coordinates
+ */
 class GoogleMap extends React.Component {
     constructor(props) {
       super(props);
@@ -15,7 +19,9 @@ class GoogleMap extends React.Component {
                 {latitude: 47.5524695, longitude: -122.0425407}]
       }
     }
-
+    /**
+     * Display marker of selected coordinates
+     */
     displayMarkers = () => {
       return this.state.stores.map((store, index) => {
         return <Marker key={index} id={index} position={{
@@ -40,6 +46,11 @@ class GoogleMap extends React.Component {
     }
 }
 
+/**
+ * Attach an API key to export default GoogleApiWrapper
+ *
+ * @param {string} apiKey: Google Map API key
+ */
 export default GoogleApiWrapper({
     apiKey: 'AIzaSyAvIbz4msIQRcp_6WCLcx-ha4Xot0A2apE'
   })(GoogleMap);

@@ -7,7 +7,11 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../actions/authActions";
 
-//Navigate bar on each page that leads to respective page
+/**
+ * Top Navigation Bar Component
+ * Contains Links to pages based on whether a user is logged-in or not
+ * @param {SyntheticEvent} e The react SyntheticEvent
+ */
 class Navigation extends React.Component {
   onLogoutClick = e => {
     e.preventDefault();

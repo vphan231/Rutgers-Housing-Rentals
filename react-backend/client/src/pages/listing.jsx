@@ -103,8 +103,9 @@ class Listing extends React.Component {
             </Col>
             <Col>
               <h2>
-                {this.state.listing.Max_Occupancy} people at $
-                {this.state.listing.price}/mo
+                {this.state.listing.Max_Occupancy}{" "}
+                {this.state.listing.Max_Occupancy == 1 ? " person" : " people"}{" "}
+                at ${this.state.listing.price}/mo
               </h2>
               <GoogleMap />
             </Col>
@@ -116,7 +117,7 @@ class Listing extends React.Component {
         <Row>
           {this.state.listings
             .filter(listing => {
-              console.log(listing.listedBy, 'vs', this.state.listedBy._id);
+              console.log(listing.listedBy, "vs", this.state.listedBy._id);
               return listing.listedBy !== this.state.listedBy._id;
             })
             .map((item, i) => (

@@ -63,7 +63,7 @@ class MainPage extends React.Component {
       <div>
         <img
           src="https://i.ibb.co/Nrmwc6X/image.png"
-          className="img-rounded"
+          className="img-rounded img-fluid"
           width="1110"
           height="420"
         ></img>

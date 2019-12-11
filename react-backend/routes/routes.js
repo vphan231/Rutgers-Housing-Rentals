@@ -66,6 +66,7 @@ router.post(
         phone,
         password
       });
+      console.log('new user:', newUser);
       // Create salt & hash
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {

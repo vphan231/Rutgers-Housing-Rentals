@@ -15,7 +15,7 @@ import jwt_decode from "jwt-decode";
 /**
  * Create Listing page (form)
  * Display fields to create a Listing.
- * 
+ *
  * @param {Object} props All props of this Button
  */
 class Createlisting extends React.Component {
@@ -76,6 +76,9 @@ class Createlisting extends React.Component {
         console.log(res);
         this.state.redirect = true;
         this.forceUpdate();
+      })
+      .catch(error => {
+        alert("Error saving your listing. Try again.");
       });
   };
   // When the text field changes, update the state with the information in the form fields

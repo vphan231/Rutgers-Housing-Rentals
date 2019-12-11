@@ -16,7 +16,8 @@ const ListingCard = props => {
         <Link to={{ pathname: `/listing/${props.listing._id}` }}>
           <Card.Title>
             {props.listing.address} <br />${props.listing.price} /{" "}
-            {props.listing.Max_Occupancy} people
+            {props.listing.Max_Occupancy}
+            {(props.listing.Max_Occupancy == 1) ? " person" : " people"}
           </Card.Title>
         </Link>
 

@@ -12,7 +12,12 @@ import { Form, Button } from "react-bootstrap";
 
 import jwt_decode from "jwt-decode";
 
-//Landlord's Create Listing Page
+/**
+ * Create Listing page (form)
+ * Display fields to create a Listing.
+ * 
+ * @param {Object} props All props of this Button
+ */
 class Createlisting extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +33,12 @@ class Createlisting extends React.Component {
       imagesrc: ""
     };
   }
-  // Function to handle form submission, sends post request to back-end
+  /**
+   * Gets called when User clicks on Submit button
+   * Adds listing to user's personal listing's field in database
+   * Sends a POST request to /createlisting with the new Listing information
+   * @param {SyntheticEvent} e The react SyntheticEvent
+   */
   handleSubmit = e => {
     e.preventDefault();
     const {
@@ -68,12 +78,11 @@ class Createlisting extends React.Component {
         this.forceUpdate();
       });
   };
+  // When the text field changes, update the state with the information in the form fields
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  // todo: changed listedby var to current logged-in user
-  // todo: redirect user to homepage with error message if not logged in
-  // todo: redirect user to My Listings page upon successful form submission
+  // Front-end code; If the redirect flag is true, redirect user to MyListings Page
   render() {
     if (this.state.redirect) return <Redirect to="/mylistings" />;
     return (

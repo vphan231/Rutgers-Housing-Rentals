@@ -15,18 +15,30 @@ import { connect } from "react-redux";
 import { loginUser } from "../actions/authActions";
 import classnames from "classnames";
 
-//Login Page
+/**
+ * Login page 
+ * Initialize this.state to empty
+ * Contains form for user to enter login information with
+ * Handles user authentication
+ */
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = { email: "", password: "", errors: {} };
   }
+  /**
+   * Function to handle redirect if user information is correct.
+   * Redirects user to MyListings page
+   */
   componentDidMount() {
-    // If logged in and user navigates to Login page, should redirect them to my listings
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/mylistings");
     }
   }
+  /**
+   * Function to receive props
+   * @param {*} nextProps parameter to check if authenticated
+   */
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
       this.props.history.push("/mylistings"); // push user to dashboard when they login
@@ -37,6 +49,10 @@ class Login extends React.Component {
       });
     }
   }
+  /**
+   * Called when user hits Submit button
+   * Sends a post request to /login with the information user wishes to login with
+   */
   handleSubmit = e => {
     e.preventDefault();
     const { email, password } = this.state;
@@ -52,6 +68,9 @@ class Login extends React.Component {
         alert(error);
       });
   };
+  /**
+   * Change text fields to match inputted information
+   */
   onChange = e => {
     this.setState({ [e.target.name]: e.target.value });
   };

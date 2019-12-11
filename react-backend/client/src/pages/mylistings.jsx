@@ -15,16 +15,20 @@ import { logoutUser } from "../actions/authActions";
 import { Button, CardColumns, Row, Col } from "react-bootstrap";
 import MyListingCard from "../components/MyListingCard";
 
-//Landlord's Listing page 
+/**
+ * MyListings page
+ * Initialize this.state to be empty
+ */
 class MyListings extends React.Component {
   constructor(props) {
     super(props);
-    // todo: populate myListings with user's listings from db
-    // todo: redirect user to homepage with error message if not logged in
-
     this.state = {};
   }
-  // Make request to backend to grab listings from db
+  /**
+   * Function that grabs user id and makes a call to backend
+   * Backend uses get request with restriction listing id = current user id
+   * Response from backend is that user's listings
+   */
   componentDidMount() {
     let listedByID = "";
     if (localStorage.jwtToken) {
@@ -46,7 +50,9 @@ class MyListings extends React.Component {
         console.log(error);
       });
   }
-
+  /**
+   * Logout user
+   */
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();

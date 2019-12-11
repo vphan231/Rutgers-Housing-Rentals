@@ -7,7 +7,11 @@ import logo from '../web-photos/ru-stadium-text.png';
 import GoogleMap from '../components/GoogleMap'
 import axios from "axios";
 
-//Home Page
+/**
+ * Home Page
+ *
+ * @param {List} listings
+ */
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +20,9 @@ class MainPage extends React.Component {
       listings: []
     };
   }
-  // Make request to backend to grab listings from db
+  /**
+   * Make request to backend to grab listings from db
+   */
   componentDidMount() {
     axios.get('/grabAll').then(res => {
       this.setState({ listings: res.data });

@@ -10,8 +10,14 @@ import {
   Link,
   useParams
 } from "react-router-dom";
-// Individual lisiting page
-// Display all perams of listing with landlord details
+/**
+ * Individual lisiting page. 
+ * Display all perams of listing with landlord details.
+ *
+ * @param {List} listing: individual listing display
+ * @param {List} listings: similar listings
+ * @param {prop} props: title, address, price, Max_Occupancy, Has_Driveway, Is_Available, imageSrc
+ */
 class Listing extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +26,12 @@ class Listing extends React.Component {
       listings: []
     };
   }
-  // Make request to backend to grab individual listing information
+  /**
+   * Make request to backend to grab individual listing information
+   *
+   * @param {HTTP get}  axios.get("/" + { id }.id): individual listing get request
+   * @param {HTTP get} axios.get("/grabAll"): similar listings get request
+   */
   componentDidMount() {
     const { id } = this.props.match.params;
     axios
@@ -107,25 +118,5 @@ class Listing extends React.Component {
     );
   }
 }
-
-// const Listing = () => {
-//     //this.state = { title: "", address: "", price: "", Max_Occupancy: "", Has_Driveway: "", Is_Available: "", imageSrc: "" };
-
-//     let { id } = useParams();
-
-//     axios.get('/listing/'+id)
-//         .then(function (response) {
-//             console.log(response);
-//         })
-//         .catch(function (error) {
-//             console.log(error);
-//     });
-
-//     return (
-//         <div>
-//             Listing id: {id}
-//         </div>
-//     );
-// }
 
 export default Listing;

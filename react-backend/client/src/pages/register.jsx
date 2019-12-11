@@ -65,7 +65,8 @@ class Register extends React.Component {
         console.log(res);
       })
       .catch(error => {
-        alert("invalid input");
+        console.log(error);
+        alert("Error submitting form.  Please check your input and try again");
       });
   };
   /**

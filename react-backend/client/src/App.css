@@ -30,3 +30,11 @@
 .card-body a:hover {
   color:black;
 }
+
+.listingBody{
+margin-top: 15px;
+}
+
+h1{
+  margin-top:.5rem !important;
+}

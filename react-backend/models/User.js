@@ -3,9 +3,8 @@ var mongoose = require("mongoose"),
 var userSchema = new mongoose.Schema({
   name: String,
   email: String,
-  phone: Number,
+  phone: String,
   password: String,
-  listings: [{ type: mongoose.Schema.Types.Number, ref: "Listing" }]
 });
 userSchema.plugin(autoIncrement.plugin, "User");
 

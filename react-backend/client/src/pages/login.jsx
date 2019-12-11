@@ -65,7 +65,7 @@ class Login extends React.Component {
       })
       .catch(error => {
         console.log(error);
-        alert(error);
+        alert("Invalid login.  Please check your input and try again");
       });
   };
   /**

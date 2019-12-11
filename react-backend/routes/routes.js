@@ -63,6 +63,7 @@ router.post(
       const newUser = new User({
         name,
         email,
+        phone,
         password
       });
       // Create salt & hash
@@ -94,13 +95,14 @@ router.route("/grabAll").get((req, res, next) => {
     console.log("id", req.query);
     Listing.find({ listedBy: req.query.id }, (error, data) => {
       if (error) {
+        console.log('error found:', error);
         return next(error);
       } else {
         res.json(data);
       }
     });
   }
-  if ((req.query.minprice != null) & (req.query.maxprice != null)) {
+  else if ((req.query.minprice != null) & (req.query.maxprice != null)) {
     console.log("prices:", req.query);
     Listing.find(
       { price: { $gt: req.query.minprice, $lt: req.query.maxprice } },
@@ -121,6 +123,18 @@ router.route("/grabAll").get((req, res, next) => {
       }
     });
   }
+});
+
+
+/* GET Landlord object */
+router.get("/getlandlord/:id", (req, res, next) => {
+  User.findById(req.params.id, (error, data) => {
+    if (error) {
+      return next(error);
+    } else {
+      res.json(data);
+    }
+  });
 });
 /* GET Individual Listing */
 router.get("/:id", (req, res, next) => {
@@ -144,7 +158,7 @@ router.post(
     check("isavail").isBoolean(),
     check("imagesrc")
       .isString()
-      .isLength({ min: 5, max: 200 })
+      .isLength({ min: 5 })
   ],
   (req, res) => {
     const errors = validationResult(req);
